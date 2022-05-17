@@ -14,8 +14,8 @@ class HomePageWidget extends StatefulWidget {
 }
 
 class _HomePageWidgetState extends State<HomePageWidget> {
-  TextEditingController textController;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  TextEditingController textController;
 
   @override
   void initState() {
@@ -34,13 +34,11 @@ class _HomePageWidgetState extends State<HomePageWidget> {
           children: [
             Stack(
               children: [
-                Align(
-                  alignment: AlignmentDirectional(0, -1.13),
-                  child: Image.asset(
-                    'assets/images/home_page.png',
-                    width: double.infinity,
-                    height: 255,
-                    fit: BoxFit.cover,
+                Container(
+                  width: double.infinity,
+                  height: 255,
+                  decoration: BoxDecoration(
+                    color: Color(0xFFC0BBED),
                   ),
                 ),
                 Align(
@@ -51,16 +49,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       mainAxisSize: MainAxisSize.max,
                       children: [
                         Text(
-                          'Findby : 취미 찾기',
-                          style: FlutterFlowTheme.of(context)
-                              .bodyText1
-                              .override(
-                                fontFamily: 'Open Sans',
-                                color:
-                                    FlutterFlowTheme.of(context).secondaryColor,
-                                fontSize: 30,
-                                fontStyle: FontStyle.normal,
-                              ),
+                          'Findby : 취미찾기',
+                          style: FlutterFlowTheme.of(context).title2.override(
+                            fontFamily: 'Roboto',
+                            color: Colors.white,
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
                         Padding(
                           padding: EdgeInsetsDirectional.fromSTEB(0, 27, 0, 0),
@@ -73,7 +67,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             ),
                             child: Padding(
                               padding:
-                                  EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
+                              EdgeInsetsDirectional.fromSTEB(15, 0, 15, 0),
                               child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: [
@@ -84,8 +78,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         MaterialPageRoute(
                                           builder: (context) =>
                                               SearchResultsPageWidget(
-                                            searchTerm: textController.text,
-                                          ),
+                                                searchTerm: textController.text,
+                                              ),
                                         ),
                                       );
                                     },
@@ -105,14 +99,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         obscureText: false,
                                         decoration: InputDecoration(
                                           hintText:
-                                              '검색',
+                                          'Search artist, maker, department...',
                                           enabledBorder: UnderlineInputBorder(
                                             borderSide: BorderSide(
                                               color: Color(0x00000000),
                                               width: 1,
                                             ),
                                             borderRadius:
-                                                const BorderRadius.only(
+                                            const BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -123,7 +117,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               width: 1,
                                             ),
                                             borderRadius:
-                                                const BorderRadius.only(
+                                            const BorderRadius.only(
                                               topLeft: Radius.circular(4.0),
                                               topRight: Radius.circular(4.0),
                                             ),
@@ -132,9 +126,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                         style: FlutterFlowTheme.of(context)
                                             .bodyText1
                                             .override(
-                                              fontFamily: 'Playfair Display',
-                                              fontSize: 16,
-                                            ),
+                                          fontFamily: 'Playfair Display',
+                                          fontSize: 16,
+                                        ),
                                       ),
                                     ),
                                   ),
@@ -147,16 +141,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                           alignment: AlignmentDirectional(-1, 0),
                           child: Padding(
                             padding:
-                                EdgeInsetsDirectional.fromSTEB(10, 15, 0, 20),
+                            EdgeInsetsDirectional.fromSTEB(10, 15, 0, 20),
                             child: Text(
                               'Museum Departments',
                               style: FlutterFlowTheme.of(context)
                                   .bodyText1
                                   .override(
-                                    fontFamily: 'Open Sans',
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.w600,
-                                  ),
+                                fontFamily: 'Playfair Display',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ),
                         ),
@@ -181,18 +175,18 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                             return Builder(
                               builder: (context) {
                                 final departments = (getJsonField(
-                                          (gridViewGetDepartmentsResponse
-                                                  ?.jsonBody ??
-                                              ''),
-                                          r'''$.departments''',
-                                        )?.toList() ??
-                                        [])
+                                  (gridViewGetDepartmentsResponse
+                                      ?.jsonBody ??
+                                      ''),
+                                  r'''$.departments''',
+                                )?.toList() ??
+                                    [])
                                     .take(30)
                                     .toList();
                                 return GridView.builder(
                                   padding: EdgeInsets.zero,
                                   gridDelegate:
-                                      SliverGridDelegateWithFixedCrossAxisCount(
+                                  SliverGridDelegateWithFixedCrossAxisCount(
                                     crossAxisCount: 2,
                                     crossAxisSpacing: 10,
                                     mainAxisSpacing: 10,
@@ -204,7 +198,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                   itemCount: departments.length,
                                   itemBuilder: (context, departmentsIndex) {
                                     final departmentsItem =
-                                        departments[departmentsIndex];
+                                    departments[departmentsIndex];
                                     return InkWell(
                                       onTap: () async {
                                         await Navigator.push(
@@ -212,33 +206,33 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 DepartmentHighlightsPageWidget(
-                                              departmentId: getJsonField(
-                                                departmentsItem,
-                                                r'''$.departmentId''',
-                                              ),
-                                              displayName: getJsonField(
-                                                departmentsItem,
-                                                r'''$.displayName''',
-                                              ).toString(),
-                                            ),
+                                                  departmentId: getJsonField(
+                                                    departmentsItem,
+                                                    r'''$.departmentId''',
+                                                  ),
+                                                  displayName: getJsonField(
+                                                    departmentsItem,
+                                                    r'''$.displayName''',
+                                                  ).toString(),
+                                                ),
                                           ),
                                         );
                                       },
                                       child: Card(
                                         clipBehavior:
-                                            Clip.antiAliasWithSaveLayer,
+                                        Clip.antiAliasWithSaveLayer,
                                         color: Colors.white,
                                         elevation: 4,
                                         shape: RoundedRectangleBorder(
                                           borderRadius:
-                                              BorderRadius.circular(8),
+                                          BorderRadius.circular(8),
                                         ),
                                         child: Align(
                                           alignment: AlignmentDirectional(0, 0),
                                           child: Padding(
                                             padding:
-                                                EdgeInsetsDirectional.fromSTEB(
-                                                    5, 0, 5, 0),
+                                            EdgeInsetsDirectional.fromSTEB(
+                                                5, 0, 5, 0),
                                             child: Text(
                                               getJsonField(
                                                 departmentsItem,
@@ -246,8 +240,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               ).toString(),
                                               textAlign: TextAlign.center,
                                               style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .title1,
+                                              FlutterFlowTheme.of(context)
+                                                  .title1,
                                             ),
                                           ),
                                         ),

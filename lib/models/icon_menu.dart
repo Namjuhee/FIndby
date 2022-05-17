@@ -11,7 +11,6 @@ class IconMenu {
 final List<IconMenu> iconMenu1 = [
   IconMenu(title: '내 동네 설정', iconData: FontAwesomeIcons.mapMarkerAlt),
   IconMenu(title: '동네 인증하기', iconData: FontAwesomeIcons.compressArrowsAlt),
-  IconMenu(title: '키워드 알림', iconData: FontAwesomeIcons.tag),
 ];
 
 final List<IconMenu> iconMenu2 = [

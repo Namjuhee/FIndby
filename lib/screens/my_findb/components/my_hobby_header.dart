@@ -24,8 +24,8 @@ class MyHobbyHeader extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                _buildRoundTextButton('예약내역', FontAwesomeIcons.receipt),
-                _buildRoundTextButton('관심목록', FontAwesomeIcons.star),
+                _buildRoundTextButton('관심가게', FontAwesomeIcons.star),
+                _buildRoundTextButton('관심목록', FontAwesomeIcons.heart),
               ],
             )
           ],

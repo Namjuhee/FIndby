@@ -5,7 +5,6 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import '../main.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class LoginPageWidget extends StatefulWidget {
@@ -16,10 +15,10 @@ class LoginPageWidget extends StatefulWidget {
 }
 
 class _LoginPageWidgetState extends State<LoginPageWidget> {
+  final scaffoldKey = GlobalKey<ScaffoldState>();
   TextEditingController emailTextController;
   TextEditingController passwordTextController;
   bool passwordVisibility;
-  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -30,20 +29,29 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
   }
 
   @override
+  void dispose() {
+    // TODO: implement dispose
+    emailTextController.dispose();
+    passwordTextController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: const Color(0xffffffff),
+      backgroundColor: Colors.white,
       body: Stack(
         children: [
           Align(
-            alignment: AlignmentDirectional(-0.04, -1),
+            alignment: AlignmentDirectional(0, -1),
             child: Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 20),
-              child: Container(
-                  width: 300,
-                  height: 180,
-                  child: Image.asset('assets/images/logo.jpg')
+              padding: EdgeInsetsDirectional.fromSTEB(0, 1, 0, 20),
+              child: Image.asset(
+                'assets/images/logo.jpg',
+                width: 180,
+                height: 180,
+                fit: BoxFit.contain,
               ),
             ),
           ),
@@ -57,16 +65,16 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                 Expanded(
                   flex: 3,
                   child: Padding(
-                    padding: EdgeInsetsDirectional.fromSTEB(0, 220, 0, 0),
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 170, 0, 0),
                     child: Container(
                       width: double.infinity,
                       height: 100,
                       decoration: BoxDecoration(
                         color: Color(0xFFC0BBED),
-                        borderRadius: BorderRadius.circular(25),
+                        borderRadius: BorderRadius.circular(30),
                       ),
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 25, 0, 0),
                         child: SingleChildScrollView(
                           child: Column(
                             mainAxisSize: MainAxisSize.max,
@@ -82,7 +90,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       width: 300,
                                       height: 50,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffffffff),
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.circular(25),
                                       ),
                                       child: Padding(
@@ -92,7 +100,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           controller: emailTextController,
                                           obscureText: false,
                                           decoration: InputDecoration(
-                                            hintText: 'Email',
+                                            labelText: 'email',
                                             hintStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0x7F455A64),
@@ -104,7 +112,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 width: 1,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                              const BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -115,7 +123,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 width: 1,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                              const BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -123,8 +131,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           ),
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0x00000000),
-                                            fontWeight: FontWeight.normal,
+                                            color: Color(0xFF455A64),
+                                            fontWeight: FontWeight.w300,
                                           ),
                                         ),
                                       ),
@@ -137,7 +145,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                       width: 300,
                                       height: 50,
                                       decoration: BoxDecoration(
-                                        color: Color(0xffffffff),
+                                        color: Colors.white,
                                         borderRadius: BorderRadius.circular(25),
                                       ),
                                       child: Padding(
@@ -147,7 +155,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           controller: passwordTextController,
                                           obscureText: !passwordVisibility,
                                           decoration: InputDecoration(
-                                            hintText: 'Password',
+                                            labelText: 'password',
                                             hintStyle: GoogleFonts.getFont(
                                               'Open Sans',
                                               color: Color(0x7F455A64),
@@ -159,7 +167,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 width: 1,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                              const BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
@@ -170,29 +178,29 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 width: 1,
                                               ),
                                               borderRadius:
-                                                  const BorderRadius.only(
+                                              const BorderRadius.only(
                                                 topLeft: Radius.circular(4.0),
                                                 topRight: Radius.circular(4.0),
                                               ),
                                             ),
                                             suffixIcon: InkWell(
                                               onTap: () => setState(
-                                                () => passwordVisibility =
-                                                    !passwordVisibility,
+                                                    () => passwordVisibility =
+                                                !passwordVisibility,
                                               ),
                                               child: Icon(
                                                 passwordVisibility
                                                     ? Icons.visibility_outlined
                                                     : Icons
-                                                        .visibility_off_outlined,
+                                                    .visibility_off_outlined,
                                                 size: 22,
                                               ),
                                             ),
                                           ),
                                           style: GoogleFonts.getFont(
                                             'Open Sans',
-                                            color: Color(0x00000000),
-                                            fontWeight: FontWeight.normal,
+                                            color: Color(0xFF455A64),
+                                            fontWeight: FontWeight.w300,
                                           ),
                                         ),
                                       ),
@@ -200,7 +208,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 20),
+                                        0, 0, 0, 18),
                                     child: FFButtonWidget(
                                       onPressed: () async {
                                         final user = await signInWithEmail(
@@ -218,7 +226,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                             builder: (context) => NavBarPage(
                                                 initialPage: 'HomePage'),
                                           ),
-                                          (r) => false,
+                                              (r) => false,
                                         );
                                       },
                                       text: '이메일로 로그인',
@@ -227,7 +235,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         height: 50,
                                         color: Colors.black,
                                         textStyle: GoogleFonts.getFont(
-                                          'Open Sans',
+                                          'Roboto',
                                           color: Color(0xFFDEDEDE),
                                           fontSize: 16,
                                         ),
@@ -241,27 +249,37 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                   Padding(
                                     padding: EdgeInsetsDirectional.fromSTEB(
-                                        0, 0, 0, 20),
-                                    child: InkWell(
-                                      onTap: () async {
-                                        await Navigator.pushAndRemoveUntil(
+                                        0, 10, 0, 15),
+                                    child: FFButtonWidget(
+                                      onPressed: () async {
+                                        await Navigator.push(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 CreateAccountPageWidget(),
                                           ),
-                                          (r) => false,
                                         );
                                       },
-                                      child: Text(
-                                        '아직 계정이 없으신가요?',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyText1
-                                            .override(
-                                              fontFamily: 'Playfair Display',
-                                              color: Color(0xFF1F1F1F),
-                                              fontWeight: FontWeight.normal,
-                                            ),
+                                      text: 'Findby 계정 생성',
+                                      icon: Icon(
+                                        Icons.add,
+                                        size: 20,
+                                      ),
+                                      options: FFButtonOptions(
+                                        width: 200,
+                                        height: 44,
+                                        color: Colors.white,
+                                        textStyle: GoogleFonts.getFont(
+                                          'Roboto',
+                                          color: Color(0xFF606060),
+                                          fontSize: 15,
+                                        ),
+                                        elevation: 4,
+                                        borderSide: BorderSide(
+                                          color: Colors.transparent,
+                                          width: 0,
+                                        ),
+                                        borderRadius: 12,
                                       ),
                                     ),
                                   ),
@@ -269,11 +287,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                               ),
                               Padding(
                                 padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 0, 0, 10),
+                                EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
                                 child: FFButtonWidget(
                                   onPressed: () async {
                                     final user =
-                                        await signInAnonymously(context);
+                                    await signInAnonymously(context);
                                     if (user == null) {
                                       return;
                                     }
@@ -283,14 +301,14 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         builder: (context) =>
                                             NavBarPage(initialPage: 'HomePage'),
                                       ),
-                                      (r) => false,
+                                          (r) => false,
                                     );
                                   },
-                                  text: '     게스트로 로그인',
+                                  text: '게스트로 로그인',
                                   icon: Icon(
                                     Icons.person,
                                     color: Color(0xFF4B39EF),
-                                    size: 25,
+                                    size: 22,
                                   ),
                                   options: FFButtonOptions(
                                     width: 200,
@@ -325,8 +343,8 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                           child: FFButtonWidget(
                                             onPressed: () async {
                                               final user =
-                                                  await signInWithGoogle(
-                                                      context);
+                                              await signInWithGoogle(
+                                                  context);
                                               if (user == null) {
                                                 return;
                                               }
@@ -335,10 +353,11 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      NavBarPage( initialPage: 'HomePage'),
+                                                      NavBarPage(
+                                                          initialPage:
+                                                          'HomePage'),
                                                 ),
-
-                                                (r) => false,
+                                                    (r) => false,
                                               );
                                             },
                                             text: '구글로 로그인',
@@ -367,7 +386,7 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                         ),
                                         Align(
                                           alignment:
-                                              AlignmentDirectional(-0.83, 0),
+                                          AlignmentDirectional(-0.75, 0),
                                           child: Container(
                                             width: 22,
                                             height: 22,
@@ -386,50 +405,6 @@ class _LoginPageWidgetState extends State<LoginPageWidget> {
                                   ),
                                 ),
                               ),
-                              isAndroid
-                                  ? Container()
-                                  : Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 0, 0, 15),
-                                      child: FFButtonWidget(
-                                        onPressed: () async {
-                                          final user =
-                                              await signInWithApple(context);
-                                          if (user == null) {
-                                            return;
-                                          }
-                                          await Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) => NavBarPage(
-                                                  initialPage: 'HomePage'),
-                                            ),
-                                            (r) => false,
-                                          );
-                                        },
-                                        text: '애플로 로그인',
-                                        icon: FaIcon(
-                                          FontAwesomeIcons.apple,
-                                          size: 20,
-                                        ),
-                                        options: FFButtonOptions(
-                                          width: 200,
-                                          height: 44,
-                                          color: Colors.white,
-                                          textStyle: GoogleFonts.getFont(
-                                            'Roboto',
-                                            color: Colors.black,
-                                            fontSize: 15,
-                                          ),
-                                          elevation: 4,
-                                          borderSide: BorderSide(
-                                            color: Colors.transparent,
-                                            width: 0,
-                                          ),
-                                          borderRadius: 12,
-                                        ),
-                                      ),
-                                    ),
                             ],
                           ),
                         ),
