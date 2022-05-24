@@ -86,9 +86,6 @@ dependencies {
     // Declare the dependency for the Firebase SDK for Google Analytics
     implementation 'com.google.firebase:firebase-analytics'
 
-    // 네이버 지도 SDK
-    implementation 'com.naver.maps:map-sdk:3.5.0'
-
 }
 
 apply plugin: 'com.google.gms.google-services'  // Google Services plugin
